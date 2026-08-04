@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAP PM - Notificação de Manutenção</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, Arial, sans-serif;
+}
+
+body{
+    background:#e7ebf0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.window{
+    width:100%;
+    max-width:900px;
+    background:#ffffff;
+    border:1px solid #aab7c4;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.topbar{
+    background:#0a6ed1;
+    color:white;
+    padding:12px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.topbar h1{
+    font-size:20px;
+}
+
+.content{
+    padding:30px;
+}
+
+.hidden{
+    display:none;
+}
+
+h2{
+    color:#1d2d44;
+    margin-bottom:20px;
+}
+
+.box{
+    border:1px solid #c7d1db;
+    background:#f7f9fb;
+    padding:18px;
+    margin:18px 0;
+}
+
+.label{
+    color:#5b6b7b;
+    font-size:14px;
+    margin-bottom:5px;
+}
+
+.value{
+    font-size:17px;
+    color:#1d2d44;
+    font-weight:600;
+}
+
+.status{
+    display:inline-block;
+    background:#d32f2f;
+    color:white;
+    padding:6px 12px;
+    border-radius:4px;
+    font-size:14px;
+    margin-top:10px;
+}
+
+button{
+    background:#0a6ed1;
+    color:white;
+    border:none;
+    padding:14px 22px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+    margin-top:25px;
+}
+
+button:hover{
+    background:#085cab;
+}
+
+.table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.table td{
+    border:1px solid #c7d1db;
+    padding:12px;
+    vertical-align:top;
+}
+
+.table td:first-child{
+    background:#eef3f8;
+    width:35%;
+    font-weight:600;
+    color:#1d2d44;
+}
+
+.section-title{
+    background:#0a6ed1;
+    color:white;
+    padding:10px;
+    margin-top:28px;
+    font-weight:600;
+}
+
+.highlight{
+    background:#fff8e1;
+    border:1px solid #f0c36d;
+    padding:18px;
+    margin-top:20px;
+    color:#5c4300;
+}
+
+.signature{
+    margin-top:30px;
+    border-top:1px solid #c7d1db;
+    padding-top:20px;
+    color:#1d2d44;
+}
+
+.fade{
+    animation:fade .6s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="window">
+
+<div class="topbar">
+<h1>SAP PM - Plant Maintenance</h1>
+<span>Notificação do Sistema</span>
+</div>
+
+<!-- TELA 1 -->
+<div class="content" id="tela1">
+
+<h2>Notificação automática do sistema</h2>
+
+<div class="box">
+<div class="label">Código da notificação</div>
+<div class="value">QM-2026-ELAINE</div>
+</div>
+
+<div class="box">
+<div class="label">Centro de trabalho</div>
+<div class="value">Manutenção Mecânica</div>
+</div>
+
+<div class="box">
+<div class="label">Equipamento monitorado</div>
+<div class="value">Sistema Maria Eduarda</div>
+</div>
+
+<div class="box">
+<div class="label">Ocorrência detectada</div>
+<div class="value">Anomalia emocional por ausência prolongada da responsável técnica.</div>
+<div class="status">FALHA CRÍTICA DETECTADA</div>
+</div>
+
+<p>
+O SAP PM identificou uma ocorrência que requer intervenção imediata da responsável técnica Elaine Andrade.
+</p>
+
+<p>
+Para visualizar a Ordem de Serviço gerada automaticamente pelo sistema, clique no botão abaixo.
+</p>
+
+<button onclick="abrirOS()">Abrir Ordem de Serviço</button>
+
+</div>
+
+<!-- TELA 2 -->
+<div class="content hidden" id="tela2">
+
+<h2>Ordem de Serviço de Manutenção</h2>
+
+<table class="table">
+<tr>
+<td>Nº da OS</td>
+<td>PM-0001/2026</td>
+</tr>
+<tr>
+<td>Tipo de manutenção</td>
+<td>Corretiva</td>
+</tr>
+<tr>
+<td>Prioridade</td>
+<td>Emergencial</td>
+</tr>
+<tr>
+<td>Solicitante</td>
+<td>Maria Eduarda</td>
+</tr>
+<tr>
+<td>Responsável pela execução</td>
+<td>Elaine Andrade</td>
+</tr>
+<tr>
+<td>Equipamento</td>
+<td>Sistema Maria Eduarda - Modelo Parafusos Soltos Edition</td>
+</tr>
+</table>
+
+<div class="section-title">Descrição da falha</div>
+
+<p>
+Durante o monitoramento operacional, foi detectada uma redução significativa no desempenho emocional do sistema em decorrência da ausência prolongada da responsável técnica.
+</p>
+
+<div class="section-title">Sintomas identificados</div>
+
+<ul style="margin:18px 0 0 22px; color:#34495e; line-height:1.8;">
+<li>ambiente operacional excessivamente sem graça;</li>
+<li>acúmulo crítico de assuntos que precisam ser relatados à responsável técnica;</li>
+<li>aumento do índice de saudade;</li>
+<li>instabilidade emocional intermitente.</li>
+</ul>
+
+<div class="section-title">Diagnóstico</div>
+
+<p><strong>Falha confirmada por ausência da Elaine.</strong></p>
+
+<p>
+O sistema permanece operacional, porém com eficiência reduzida e tendência de agravamento caso a intervenção não seja executada.
+</p>
+
+<div class="section-title">Ação corretiva recomendada</div>
+
+<p>Executar imediatamente uma ou mais das seguintes atividades:</p>
+
+<ul style="margin:18px 0 0 22px; color:#34495e; line-height:1.8;">
+<li>conversa técnica prolongada;</li>
+<li>visita de inspeção presencial;</li>
+<li>abraço para recalibração do sistema;</li>
+<li>compartilhamento de risadas e assuntos acumulados.</li>
+</ul>
+
+<div class="highlight">
+<strong>Observação do técnico:</strong><br><br>
+Constatou-se que Maria Eduarda ama muito Elaine Andrade e que os parafusos a menos fazem parte da configuração original do equipamento, não sendo necessária qualquer substituição de componentes.
+</div>
+
+<div class="section-title">Status da ordem de serviço</div>
+
+<p><strong>Aguardando execução pela responsável técnica.</strong></p>
+
+<div class="signature">
+<p><strong>Emitido eletronicamente pelo SAP PM</strong></p>
+<p>Departamento de Manutenção de Saudade e Relacionamentos Importantes</p>
+<p><strong>Solicitante:</strong> Maria Eduarda</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function abrirOS(){
+    document.getElementById('tela1').classList.add('hidden');
+    const tela2 = document.getElementById('tela2');
+    tela2.classList.remove('hidden');
+    tela2.classList.add('fade');
+}
+</script>
+
+</body>
+</html>
