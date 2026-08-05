@@ -3,300 +3,341 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAP PM - Notificação de Manutenção</title>
+<title>SAP PM | Ordem de Serviço</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI, Arial, sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-    background:#e7ebf0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    padding:20px;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#eef3f8;
+  color:#1f2937;
 }
-
-.window{
-    width:100%;
-    max-width:900px;
-    background:#ffffff;
-    border:1px solid #aab7c4;
-    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+.header{
+  background:#0a6ed1;
+  color:#fff;
+  padding:14px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
-
-.topbar{
-    background:#0a6ed1;
-    color:white;
-    padding:12px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.header h1{font-size:18px}
+.container{max-width:860px;margin:20px auto;padding:0 16px}
+.card{
+  background:#fff;
+  border:1px solid #d5dde5;
+  border-radius:10px;
+  padding:24px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
-
-.topbar h1{
-    font-size:20px;
+.hidden{display:none}
+h2{color:#12355b;margin-bottom:16px}
+.info-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:18px 0;
 }
-
-.content{
-    padding:30px;
+.info{
+  background:#f7f9fb;
+  border:1px solid #d9e2ec;
+  border-radius:8px;
+  padding:14px;
 }
-
-.hidden{
-    display:none;
-}
-
-h2{
-    color:#1d2d44;
-    margin-bottom:20px;
-}
-
-.box{
-    border:1px solid #c7d1db;
-    background:#f7f9fb;
-    padding:18px;
-    margin:18px 0;
-}
-
 .label{
-    color:#5b6b7b;
-    font-size:14px;
-    margin-bottom:5px;
+  color:#64748b;
+  font-size:12px;
+  text-transform:uppercase;
+  margin-bottom:6px;
 }
-
-.value{
-    font-size:17px;
-    color:#1d2d44;
-    font-weight:600;
+.value{font-weight:600}
+.alert{
+  background:#fdecea;
+  border:1px solid #ef9a9a;
+  color:#b71c1c;
+  padding:16px;
+  border-radius:8px;
+  margin:20px 0;
 }
-
-.status{
-    display:inline-block;
-    background:#d32f2f;
-    color:white;
-    padding:6px 12px;
-    border-radius:4px;
-    font-size:14px;
-    margin-top:10px;
-}
-
 button{
-    background:#0a6ed1;
-    color:white;
-    border:none;
-    padding:14px 22px;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:16px;
-    margin-top:25px;
+  width:100%;
+  background:#0a6ed1;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  padding:14px 18px;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:20px;
 }
-
-button:hover{
-    background:#085cab;
-}
-
+button:hover{background:#085cab}
 .table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
+  width:100%;
+  border-collapse:collapse;
+  margin-top:18px;
 }
-
 .table td{
-    border:1px solid #c7d1db;
-    padding:12px;
-    vertical-align:top;
+  border:1px solid #d9e2ec;
+  padding:12px;
 }
-
 .table td:first-child{
-    background:#eef3f8;
-    width:35%;
-    font-weight:600;
-    color:#1d2d44;
+  background:#f6f8fb;
+  width:38%;
+  font-weight:600;
 }
-
-.section-title{
-    background:#0a6ed1;
-    color:white;
-    padding:10px;
-    margin-top:28px;
-    font-weight:600;
+.section{
+  margin-top:28px;
 }
-
-.highlight{
-    background:#fff8e1;
-    border:1px solid #f0c36d;
-    padding:18px;
-    margin-top:20px;
-    color:#5c4300;
+.section h3{
+  background:#0a6ed1;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:6px;
+  font-size:15px;
+  margin-bottom:14px;
 }
-
-.signature{
-    margin-top:30px;
-    border-top:1px solid #c7d1db;
-    padding-top:20px;
-    color:#1d2d44;
+ul{
+  padding-left:20px;
+  line-height:1.8;
 }
-
+.note{
+  background:#fff8e1;
+  border:1px solid #f0c36d;
+  padding:16px;
+  border-radius:8px;
+  margin-top:18px;
+}
+.status{
+  display:inline-block;
+  background:#d32f2f;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:4px;
+  font-size:12px;
+  font-weight:700;
+}
+.footer{
+  margin-top:28px;
+  padding-top:18px;
+  border-top:1px solid #d9e2ec;
+  color:#475569;
+}
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+.popup-content{
+  background:#fff;
+  border-radius:12px;
+  max-width:460px;
+  width:100%;
+  padding:26px;
+  text-align:center;
+}
+.popup-content h2{
+  color:#15803d;
+  margin-bottom:12px;
+}
+.popup-content p{
+  line-height:1.7;
+  margin:12px 0;
+}
 .fade{
-    animation:fade .6s ease;
+  animation:fade .5s ease;
 }
-
 @keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(15px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:600px){
+  .info-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<div class="window">
-
-<div class="topbar">
-<h1>SAP PM - Plant Maintenance</h1>
-<span>Notificação do Sistema</span>
+<div class="header">
+  <h1>SAP PM - Plant Maintenance</h1>
+  <span>Sistema Corporativo</span>
 </div>
 
-<!-- TELA 1 -->
-<div class="content" id="tela1">
+<div class="container">
+
+<!-- NOTIFICAÇÃO -->
+<div class="card fade" id="notificacao">
 
 <h2>Notificação automática do sistema</h2>
 
-<div class="box">
-<div class="label">Código da notificação</div>
-<div class="value">QM-2026-ELAINE</div>
+<div class="info-grid">
+  <div class="info">
+    <div class="label">Código da notificação</div>
+    <div class="value">QM-2026-ELAINE</div>
+  </div>
+
+  <div class="info">
+    <div class="label">Centro de trabalho</div>
+    <div class="value">Manutenção Mecânica</div>
+  </div>
+
+  <div class="info">
+    <div class="label">Equipamento monitorado</div>
+    <div class="value">Sistema Maria Eduarda</div>
+  </div>
+
+  <div class="info">
+    <div class="label">Prioridade</div>
+    <div class="value">Emergencial</div>
+  </div>
 </div>
 
-<div class="box">
-<div class="label">Centro de trabalho</div>
-<div class="value">Manutenção Mecânica</div>
+<div class="alert">
+<strong>Falha crítica detectada.</strong><br><br>
+O sistema identificou uma anomalia emocional decorrente da ausência prolongada da responsável técnica Elaine Andrade.
 </div>
 
-<div class="box">
-<div class="label">Equipamento monitorado</div>
-<div class="value">Sistema Maria Eduarda</div>
-</div>
-
-<div class="box">
-<div class="label">Ocorrência detectada</div>
-<div class="value">Anomalia emocional por ausência prolongada da responsável técnica.</div>
-<div class="status">FALHA CRÍTICA DETECTADA</div>
-</div>
-
-<p>
-O SAP PM identificou uma ocorrência que requer intervenção imediata da responsável técnica Elaine Andrade.
-</p>
-
-<p>
-Para visualizar a Ordem de Serviço gerada automaticamente pelo sistema, clique no botão abaixo.
-</p>
+<p>Foi gerada automaticamente uma Ordem de Serviço para intervenção corretiva.</p>
 
 <button onclick="abrirOS()">Abrir Ordem de Serviço</button>
 
 </div>
 
-<!-- TELA 2 -->
-<div class="content hidden" id="tela2">
+<!-- ORDEM DE SERVIÇO -->
+<div class="card hidden fade" id="os">
 
 <h2>Ordem de Serviço de Manutenção</h2>
 
 <table class="table">
-<tr>
-<td>Nº da OS</td>
-<td>PM-0001/2026</td>
-</tr>
-<tr>
-<td>Tipo de manutenção</td>
-<td>Corretiva</td>
-</tr>
-<tr>
-<td>Prioridade</td>
-<td>Emergencial</td>
-</tr>
-<tr>
-<td>Solicitante</td>
-<td>Maria Eduarda</td>
-</tr>
-<tr>
-<td>Responsável pela execução</td>
-<td>Elaine Andrade</td>
-</tr>
-<tr>
-<td>Equipamento</td>
-<td>Sistema Maria Eduarda - Modelo Parafusos Soltos Edition</td>
-</tr>
+<tr><td>Nº da OS</td><td>PM-0001/2026</td></tr>
+<tr><td>Tipo de manutenção</td><td>Corretiva</td></tr>
+<tr><td>Status</td><td><span class="status">AGUARDANDO EXECUÇÃO</span></td></tr>
+<tr><td>Solicitante</td><td>Maria Eduarda</td></tr>
+<tr><td>Responsável pela execução</td><td>Elaine Andrade</td></tr>
+<tr><td>Equipamento</td><td>Sistema Maria Eduarda - Modelo Parafusos Soltos Edition</td></tr>
 </table>
 
-<div class="section-title">Descrição da falha</div>
+<div class="section">
+<h3>Descrição da ocorrência</h3>
 
-<p>
-Durante o monitoramento operacional, foi detectada uma redução significativa no desempenho emocional do sistema em decorrência da ausência prolongada da responsável técnica.
-</p>
+<p>Durante o monitoramento operacional, foi detectada uma redução significativa no desempenho emocional do sistema em decorrência da ausência prolongada da responsável técnica.</p>
+</div>
 
-<div class="section-title">Sintomas identificados</div>
+<div class="section">
+<h3>Sintomas observados</h3>
 
-<ul style="margin:18px 0 0 22px; color:#34495e; line-height:1.8;">
+<ul>
 <li>ambiente operacional excessivamente sem graça;</li>
 <li>acúmulo crítico de assuntos que precisam ser relatados à responsável técnica;</li>
-<li>aumento do índice de saudade;</li>
-<li>instabilidade emocional intermitente.</li>
+<li>aumento progressivo do índice de saudade;</li>
+<li>pensamentos recorrentes sobre a responsável técnica.</li>
 </ul>
+</div>
 
-<div class="section-title">Diagnóstico</div>
+<div class="section">
+<h3>Diagnóstico</h3>
 
 <p><strong>Falha confirmada por ausência da Elaine.</strong></p>
 
-<p>
-O sistema permanece operacional, porém com eficiência reduzida e tendência de agravamento caso a intervenção não seja executada.
-</p>
+<p>O sistema permanece operacional, porém com eficiência reduzida e tendência de agravamento caso a intervenção não seja executada.</p>
+</div>
 
-<div class="section-title">Ação corretiva recomendada</div>
+<div class="section">
+<h3>Análise de causa raiz (5 porquês)</h3>
+
+<p><strong>Problema:</strong> Maria Eduarda está com muita saudade.</p>
+
+<p><strong>Por quê?</strong> Porque a Elaine está longe.</p>
+
+<p><strong>Por quê?</strong> Porque faz tempo que não conversamos direito.</p>
+
+<p><strong>Por quê?</strong> Porque a rotina resolveu colaborar com o caos.</p>
+
+<p><strong>Por quê?</strong> Porque a vida às vezes insiste em separar quem gosta de ficar perto.</p>
+
+<p><strong>Causa raiz identificada:</strong> Distância excessiva entre Maria Eduarda e Elaine Andrade.</p>
+</div>
+
+<div class="section">
+<h3>Ação corretiva recomendada</h3>
 
 <p>Executar imediatamente uma ou mais das seguintes atividades:</p>
 
-<ul style="margin:18px 0 0 22px; color:#34495e; line-height:1.8;">
+<ul>
 <li>conversa técnica prolongada;</li>
 <li>visita de inspeção presencial;</li>
-<li>abraço para recalibração do sistema;</li>
-<li>compartilhamento de risadas e assuntos acumulados.</li>
+<li>abraço para recalibração completa do sistema;</li>
+<li>compartilhamento de todos os assuntos acumulados.</li>
 </ul>
 
-<div class="highlight">
+<div class="note">
 <strong>Observação do técnico:</strong><br><br>
 Constatou-se que Maria Eduarda ama muito Elaine Andrade e que os parafusos a menos fazem parte da configuração original do equipamento, não sendo necessária qualquer substituição de componentes.
 </div>
+</div>
 
-<div class="section-title">Status da ordem de serviço</div>
+<div class="section">
+<h3>Indicadores técnicos</h3>
 
-<p><strong>Aguardando execução pela responsável técnica.</strong></p>
+<table class="table">
+<tr><td>MTBF</td><td>Muito baixo quando Elaine está longe</td></tr>
+<tr><td>Tempo estimado</td><td>Indeterminado (depende da duração da conversa)</td></tr>
+<tr><td>Peças necessárias</td><td>1 abraço, 1 conversa longa e disponibilidade para ouvir todos os assuntos acumulados</td></tr>
+</table>
+</div>
 
-<div class="signature">
+<div class="section">
+<h3>Encerramento da OS</h3>
+
+<p>Após a execução da manutenção, espera-se redução significativa dos níveis de saudade, melhora imediata do estado emocional e restauração parcial do funcionamento normal do sistema.</p>
+
+<p><strong>Recomendação preventiva:</strong> não permitir que a responsável técnica permaneça tanto tempo longe da solicitante.</p>
+</div>
+
+<div class="footer">
 <p><strong>Emitido eletronicamente pelo SAP PM</strong></p>
 <p>Departamento de Manutenção de Saudade e Relacionamentos Importantes</p>
 <p><strong>Solicitante:</strong> Maria Eduarda</p>
 </div>
 
+<button onclick="executarManutencao()">Executar manutenção</button>
+
 </div>
 
+</div>
+
+<!-- POPUP FINAL -->
+<div class="popup hidden" id="popup">
+<div class="popup-content">
+
+<h2>OS encerrada com sucesso</h2>
+
+<p>A intervenção da responsável técnica <strong>Elaine Andrade</strong> foi registrada no sistema.</p>
+
+<p><strong>Causa raiz eliminada temporariamente:</strong> saudade da Elaine.</p>
+
+<p>Os níveis de saudade do sistema <strong>Maria Eduarda</strong> foram reduzidos, porém o SAP PM recomenda <strong>manutenção preventiva frequente</strong>, preferencialmente com conversas longas, visitas técnicas e abraços para recalibração completa do equipamento.</p>
+
+<button onclick="fecharPopup()">Encerrar</button>
+
+</div>
 </div>
 
 <script>
 function abrirOS(){
-    document.getElementById('tela1').classList.add('hidden');
-    const tela2 = document.getElementById('tela2');
-    tela2.classList.remove('hidden');
-    tela2.classList.add('fade');
+  document.getElementById('notificacao').classList.add('hidden');
+  document.getElementById('os').classList.remove('hidden');
+}
+
+function executarManutencao(){
+  document.getElementById('popup').classList.remove('hidden');
+}
+
+function fecharPopup(){
+  document.getElementById('popup').classList.add('hidden');
 }
 </script>
 
